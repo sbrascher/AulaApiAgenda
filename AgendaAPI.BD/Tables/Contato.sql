@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Contato]
+(
+	[Id] INT NOT NULL IDENTITY(1,1),
+	[Nome] VARCHAR(100) NOT NULL, 
+    CONSTRAINT [PK_Contato] PRIMARY KEY ([Id])
+)

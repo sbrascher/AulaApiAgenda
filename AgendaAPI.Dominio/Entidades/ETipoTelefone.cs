@@ -7,7 +7,7 @@ namespace AgendaAPI.Dominio.Entidades
 {
     public enum ETipoTelefone
     {
-        Celular,
-        Residencial
+        Celular = 1,
+        Residencial = 2
     }
 }

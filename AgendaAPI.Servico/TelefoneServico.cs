@@ -9,10 +9,14 @@ namespace AgendaAPI.Servico
     public class TelefoneServico : ITelefoneServico
     {
         private readonly ITelefoneRepositorio repositorio;
+        private readonly IContatoRepositorio contatoRepositorio;
 
-        public TelefoneServico(ITelefoneRepositorio repositorio)
+        public TelefoneServico(
+            ITelefoneRepositorio repositorio,
+            IContatoRepositorio contatoRepositorio)
         {
             this.repositorio = repositorio;
+            this.contatoRepositorio = contatoRepositorio;
         }
 
         public List<string> Atualizar(Telefone telefone)
@@ -36,6 +40,11 @@ namespace AgendaAPI.Servico
 
             if (String.IsNullOrEmpty(telefone.Numero))
                 erros.Add("Número não informado.");
+
+            if (telefone.ContatoId == 0)
+                erros.Add("Contato não informado.");
+            else
+                telefone.Contato = contatoRepositorio.Obter(telefone.ContatoId);
 
             if (erros.Count == 0)
             {

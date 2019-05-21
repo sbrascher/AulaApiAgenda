@@ -14,11 +14,12 @@ namespace AgendaAPI.Repositorio.Maps
             builder.ToTable("Telefone");
 
             builder.Property(x => x.Id).HasColumnName("Id");
-            builder.Property(x => x.Numero).HasColumnName("Nome");
+            builder.Property(x => x.Numero).HasColumnName("Numero");
+            builder.Property(x => x.ContatoId).HasColumnName("ContatoId");
 
             builder
                 .HasOne(x => x.Contato)
-                .WithMany()
+                .WithMany(x => x.Telefones)
                 .HasForeignKey(x => x.ContatoId);
         }
     }

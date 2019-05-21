@@ -30,16 +30,18 @@ namespace AgendaAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AgendaContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
+
             // Repositorios
             services.AddTransient<IContatoRepositorio, ContatoRepositorio>();
             services.AddTransient<ITelefoneRepositorio, TelefoneRepositorio>();
-            
+
             // Servicos
             services.AddTransient<IContatoServico, ContatoServico>();
             services.AddTransient<ITelefoneServico, TelefoneServico>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

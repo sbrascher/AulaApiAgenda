@@ -15,6 +15,11 @@ namespace AgendaAPI.Repositorio.Maps
 
             builder.Property(x => x.Id).HasColumnName("Id");
             builder.Property(x => x.Nome).HasColumnName("Nome");
+
+            builder
+                .HasMany(x => x.Telefones)
+                .WithOne(x => x.Contato);
+
         }
     }
 }

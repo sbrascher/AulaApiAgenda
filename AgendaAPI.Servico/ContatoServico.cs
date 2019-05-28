@@ -1,5 +1,6 @@
 ﻿using AgendaAPI.Dominio.Entidades;
 using AgendaAPI.Dominio.Repositorios;
+using AgendaAPI.Dominio.Scopes;
 using AgendaAPI.Dominio.Servicos;
 using AgendaAPI.Repositorio.Transacao;
 using System;
@@ -18,10 +19,7 @@ namespace AgendaAPI.Servico
 
         public List<string> Atualizar(Contato contato)
         {
-            var erros = new List<string>();
-
-            if (String.IsNullOrEmpty(contato.Nome))
-                erros.Add("Nome não informado.");
+            var erros = contato.UpdateValidade();
 
             if (erros.Count == 0)
             {
@@ -34,10 +32,7 @@ namespace AgendaAPI.Servico
 
         public List<string> Criar(Contato contato)
         {
-            var erros = new List<string>();
-
-            if (String.IsNullOrEmpty(contato.Nome))
-                erros.Add("Nome não informado.");
+            var erros = contato.CreateValidade();
 
             if (erros.Count == 0)
             {

@@ -1,5 +1,6 @@
 ﻿using AgendaAPI.Dominio.Entidades;
 using AgendaAPI.Dominio.Repositorios;
+using AgendaAPI.Dominio.Scopes;
 using AgendaAPI.Dominio.Servicos;
 using AgendaAPI.Repositorio.Transacao;
 using System;
@@ -22,10 +23,7 @@ namespace AgendaAPI.Servico
 
         public List<string> Atualizar(Telefone telefone)
         {
-            var erros = new List<string>();
-
-            if (String.IsNullOrEmpty(telefone.Numero))
-                erros.Add("Número não informado.");
+            var erros = telefone.UpdateValidade();
 
             if (erros.Count == 0)
             {
@@ -38,18 +36,12 @@ namespace AgendaAPI.Servico
 
         public List<string> Criar(Telefone telefone)
         {
-            var erros = new List<string>();
-
-            if (String.IsNullOrEmpty(telefone.Numero))
-                erros.Add("Número não informado.");
-
-            if (telefone.ContatoId == 0)
-                erros.Add("Contato não informado.");
-            else
-                telefone.Contato = contatoRepositorio.Obter(telefone.ContatoId);
+            var erros = telefone.CreateValidade();
 
             if (erros.Count == 0)
             {
+                telefone.Contato = contatoRepositorio.Obter(telefone.ContatoId);
+
                 repositorio.Criar(telefone);
                 Commit();
             }

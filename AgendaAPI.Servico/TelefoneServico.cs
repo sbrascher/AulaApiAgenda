@@ -1,19 +1,20 @@
 ﻿using AgendaAPI.Dominio.Entidades;
 using AgendaAPI.Dominio.Repositorios;
 using AgendaAPI.Dominio.Servicos;
+using AgendaAPI.Repositorio.Transacao;
 using System;
 using System.Collections.Generic;
 
 namespace AgendaAPI.Servico
 {
-    public class TelefoneServico : ITelefoneServico
+    public class TelefoneServico : ServicoBase, ITelefoneServico
     {
         private readonly ITelefoneRepositorio repositorio;
         private readonly IContatoRepositorio contatoRepositorio;
 
         public TelefoneServico(
             ITelefoneRepositorio repositorio,
-            IContatoRepositorio contatoRepositorio)
+            IContatoRepositorio contatoRepositorio, IUnitOfWork uow) : base(uow)
         {
             this.repositorio = repositorio;
             this.contatoRepositorio = contatoRepositorio;
@@ -29,6 +30,7 @@ namespace AgendaAPI.Servico
             if (erros.Count == 0)
             {
                 repositorio.Atualizar(telefone);
+                Commit();
             }
 
             return erros;
@@ -49,6 +51,7 @@ namespace AgendaAPI.Servico
             if (erros.Count == 0)
             {
                 repositorio.Criar(telefone);
+                Commit();
             }
 
             return erros;
@@ -57,6 +60,7 @@ namespace AgendaAPI.Servico
         public void Excluir(Telefone telefone)
         {
             repositorio.Excluir(telefone);
+            Commit();
         }
 
         public List<Telefone> ObterPorContato(int contatoId)

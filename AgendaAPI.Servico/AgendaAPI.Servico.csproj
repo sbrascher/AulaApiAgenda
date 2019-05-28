@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AgendaAPI.Dominio\AgendaAPI.Dominio.csproj" />
+    <ProjectReference Include="..\AgendaAPI.Repositorio\AgendaAPI.Repositorio.csproj" />
   </ItemGroup>
 
 </Project>

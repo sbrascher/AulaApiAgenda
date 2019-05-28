@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AgendaAPI.Dominio.Repositorios;
 using AgendaAPI.Dominio.Servicos;
 using AgendaAPI.Repositorio;
+using AgendaAPI.Repositorio.Transacao;
 using AgendaAPI.Servico;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,6 +33,7 @@ namespace AgendaAPI
             services.AddDbContext<AgendaContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // Repositorios
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IContatoRepositorio, ContatoRepositorio>();
             services.AddTransient<ITelefoneRepositorio, TelefoneRepositorio>();
 

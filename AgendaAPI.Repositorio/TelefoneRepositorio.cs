@@ -20,19 +20,16 @@ namespace AgendaAPI.Repositorio
         public void Atualizar(Telefone telefone)
         {
             contexto.Entry<Telefone>(telefone).State = EntityState.Modified;
-            contexto.SaveChanges();
         }
 
         public void Criar(Telefone telefone)
         {
             contexto.Telefones.Add(telefone);
-            contexto.SaveChanges();
         }
 
         public void Excluir(Telefone telefone)
         {
             contexto.Telefones.Remove(telefone);
-            contexto.SaveChanges();
         }
 
         public List<Telefone> ObterPorContato(int contatoId)

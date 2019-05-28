@@ -1,16 +1,17 @@
 ﻿using AgendaAPI.Dominio.Entidades;
 using AgendaAPI.Dominio.Repositorios;
 using AgendaAPI.Dominio.Servicos;
+using AgendaAPI.Repositorio.Transacao;
 using System;
 using System.Collections.Generic;
 
 namespace AgendaAPI.Servico
 {
-    public class ContatoServico : IContatoServico
+    public class ContatoServico : ServicoBase, IContatoServico
     {
         private readonly IContatoRepositorio repositorio;
 
-        public ContatoServico(IContatoRepositorio repositorio)
+        public ContatoServico(IContatoRepositorio repositorio, IUnitOfWork uow) : base(uow)
         {
             this.repositorio = repositorio;
         }
@@ -25,6 +26,7 @@ namespace AgendaAPI.Servico
             if (erros.Count == 0)
             {
                 repositorio.Atualizar(contato);
+                Commit();
             }
 
             return erros;
@@ -40,6 +42,7 @@ namespace AgendaAPI.Servico
             if (erros.Count == 0)
             {
                 repositorio.Criar(contato);
+                Commit();
             }
 
             return erros;
@@ -48,6 +51,7 @@ namespace AgendaAPI.Servico
         public void Excluir(Contato contato)
         {
             repositorio.Excluir(contato);
+            Commit();
         }
 
         public List<Contato> Obter()

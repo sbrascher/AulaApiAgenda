@@ -60,7 +60,9 @@ namespace AgendaAPI.Controllers
             if (contatoSalvo == null)
                 return NotFound();
 
-            var erros = servico.Atualizar(contato);
+            contatoSalvo.Nome = contato.Nome;
+
+            var erros = servico.Atualizar(contatoSalvo);
 
             if (erros.Count > 0)
                 return BadRequest(erros);

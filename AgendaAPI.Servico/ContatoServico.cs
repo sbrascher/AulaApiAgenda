@@ -32,7 +32,7 @@ namespace AgendaAPI.Servico
 
         public List<string> Criar(Contato contato)
         {
-            var erros = contato.CreateValidade();
+            var erros = contato.CreateValidate();
 
             if (erros.Count == 0)
             {

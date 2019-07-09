@@ -40,7 +40,8 @@ namespace AgendaAPI.Servico
 
             if (erros.Count == 0)
             {
-                telefone.Contato = contatoRepositorio.Obter(telefone.ContatoId);
+                //telefone.Contato = contatoRepositorio.Obter(telefone.ContatoId);
+                telefone.ContatoId = telefone.ContatoId;
 
                 repositorio.Criar(telefone);
                 Commit();

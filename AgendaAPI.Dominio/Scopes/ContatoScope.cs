@@ -7,7 +7,7 @@ namespace AgendaAPI.Dominio.Scopes
 {
     public static class ContatoScope
     {
-        public static List<string> CreateValidade(this Contato contato)
+        public static List<string> CreateValidate(this Contato contato)
         {
             var erros = new List<string>();
 
@@ -19,7 +19,7 @@ namespace AgendaAPI.Dominio.Scopes
 
         public static List<string> UpdateValidade(this Contato contato)
         {
-            return CreateValidade(contato);
+            return CreateValidate(contato);
         }
     }
 }

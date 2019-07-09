@@ -14,5 +14,14 @@ namespace AgendaAPI.Dominio.Entidades
         public int Id { get; set; }
         public string Nome { get; set; }
         public List<Telefone> Telefones { get; set; }
+
+    }
+
+    public static class QQNome
+    {
+        public static void Teste(this Contato contato)
+        {
+            //
+        }
     }
 }

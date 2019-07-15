@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaAPI", "AgendaAPI\AgendaAPI.csproj", "{6DB8FB34-9B80-41BF-A659-4E3373F3C4FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgendaAPI", "AgendaAPI\AgendaAPI.csproj", "{6DB8FB34-9B80-41BF-A659-4E3373F3C4FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaAPI.Dominio", "AgendaAPI.Dominio\AgendaAPI.Dominio.csproj", "{094548FC-1F12-4C36-96F3-F0160D09BA20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgendaAPI.Dominio", "AgendaAPI.Dominio\AgendaAPI.Dominio.csproj", "{094548FC-1F12-4C36-96F3-F0160D09BA20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaAPI.Repositorio", "AgendaAPI.Repositorio\AgendaAPI.Repositorio.csproj", "{17FBCF7B-7FF1-4D43-AFF0-C9390921D091}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgendaAPI.Repositorio", "AgendaAPI.Repositorio\AgendaAPI.Repositorio.csproj", "{17FBCF7B-7FF1-4D43-AFF0-C9390921D091}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaAPI.Servico", "AgendaAPI.Servico\AgendaAPI.Servico.csproj", "{3EFA8BDB-14CA-410B-B55E-5695F70B1D25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgendaAPI.Servico", "AgendaAPI.Servico\AgendaAPI.Servico.csproj", "{3EFA8BDB-14CA-410B-B55E-5695F70B1D25}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "AgendaAPI.BD", "AgendaAPI.BD\AgendaAPI.BD.sqlproj", "{D7B510BA-8223-4329-BA9A-69822AE76BA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaAPI.Teste", "AgendaAPI.Teste\AgendaAPI.Teste.csproj", "{2C3068F0-BCF1-4BEE-8225-C8E9D1AAED02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{D7B510BA-8223-4329-BA9A-69822AE76BA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7B510BA-8223-4329-BA9A-69822AE76BA5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D7B510BA-8223-4329-BA9A-69822AE76BA5}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{2C3068F0-BCF1-4BEE-8225-C8E9D1AAED02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C3068F0-BCF1-4BEE-8225-C8E9D1AAED02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C3068F0-BCF1-4BEE-8225-C8E9D1AAED02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C3068F0-BCF1-4BEE-8225-C8E9D1AAED02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

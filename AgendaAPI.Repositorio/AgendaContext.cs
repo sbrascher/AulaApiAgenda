@@ -14,11 +14,13 @@ namespace AgendaAPI.Repositorio
 
         public DbSet<Contato> Contatos { get; set; }
         public DbSet<Telefone> Telefones { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ContatoMap());
             modelBuilder.ApplyConfiguration(new TelefoneMap());
+            modelBuilder.ApplyConfiguration(new UsuarioMap());
         }
     }
 }

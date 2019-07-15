@@ -23,7 +23,7 @@ namespace AgendaAPI.Servico
 
         public List<string> Atualizar(Telefone telefone)
         {
-            var erros = telefone.UpdateValidade();
+            var erros = telefone.ValidarAlteracao();
 
             if (erros.Count == 0)
             {
@@ -36,7 +36,7 @@ namespace AgendaAPI.Servico
 
         public List<string> Criar(Telefone telefone)
         {
-            var erros = telefone.CreateValidade();
+            var erros = telefone.ValidarCriacao();
 
             if (erros.Count == 0)
             {

@@ -4,16 +4,12 @@ using System.Text;
 
 namespace AgendaAPI.Dominio.Entidades
 {
-    public class Contato
+    public class Usuario
     {
-        public Contato()
-        {
-            Telefones = new List<Telefone>();
-        }
-
         public int Id { get; set; }
         public string Nome { get; set; }
-        public List<Telefone> Telefones { get; set; }
+        public string Email { get; set; }
 
+        public string Senha { get; set; }
     }
 }

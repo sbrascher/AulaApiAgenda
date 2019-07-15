@@ -7,6 +7,7 @@ using AgendaAPI.Dominio.Servicos;
 using AgendaAPI.Repositorio;
 using AgendaAPI.Repositorio.Transacao;
 using AgendaAPI.Servico;
+using AgendaAPI.Servico.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -36,10 +37,13 @@ namespace AgendaAPI
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IContatoRepositorio, ContatoRepositorio>();
             services.AddTransient<ITelefoneRepositorio, TelefoneRepositorio>();
+            services.AddTransient<IUsuarioRepositorio, UsuarioRepositorio>();
 
             // Servicos
             services.AddTransient<IContatoServico, ContatoServico>();
             services.AddTransient<ITelefoneServico, TelefoneServico>();
+            services.AddTransient<IUsuarioServico, UsuarioServico>();
+            services.AddTransient<ICriptografiaServico, CriptografiaServico>();
 
             services.AddCors(options =>
             {

@@ -22,13 +22,13 @@ namespace AgendaAPI.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] LoginModel model)
         {
-            string token = String.Empty;
-            var erros = _servico.Autenticar(model.Email,model.Senha, out token);
+            string accessToken = String.Empty;
+            var erros = _servico.Autenticar(model.Email, model.Senha, out accessToken);
 
             if (erros.Count > 0)
                 return BadRequest(erros);
 
-            return Ok(token);
+            return Ok(new { accessToken });
         }
     }
 }

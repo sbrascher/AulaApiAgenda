@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using AgendaAPI.Dominio.Repositorios;
 using AgendaAPI.Dominio.Servicos;
+using AgendaAPI.Extensions;
 using AgendaAPI.Repositorio;
 using AgendaAPI.Repositorio.Transacao;
 using AgendaAPI.Servico;
 using AgendaAPI.Servico.Interfaces;
+using AgendaAPI.Servico.Seguranca;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -33,6 +35,8 @@ namespace AgendaAPI
         {
             services.AddDbContext<AgendaContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddScoped<SigningConfigurations, SigningConfigurations>();
+
             // Repositorios
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IContatoRepositorio, ContatoRepositorio>();
@@ -44,6 +48,17 @@ namespace AgendaAPI
             services.AddTransient<ITelefoneServico, TelefoneServico>();
             services.AddTransient<IUsuarioServico, UsuarioServico>();
             services.AddTransient<ICriptografiaServico, CriptografiaServico>();
+
+            var signingConfigurations = new SigningConfigurations();
+            services.AddSingleton(signingConfigurations);
+
+            var tokenConfigurations = new TokenConfigurations();
+            new ConfigureFromConfigurationOptions<TokenConfigurations>(
+                Configuration.GetSection("TokenConfigurations"))
+                    .Configure(tokenConfigurations);
+            services.AddSingleton(tokenConfigurations);
+
+            services.AddJwtSecurity(signingConfigurations, tokenConfigurations);
 
             services.AddCors(options =>
             {

@@ -19,16 +19,19 @@ namespace AgendaAPI.Servico
         private readonly IUsuarioRepositorio repositorio;
         private readonly ICriptografiaServico criptografiaServico;
         private readonly SigningConfigurations signingConfigurations;
-        
+        private TokenConfigurations tokenConfigurations;
+
         public UsuarioServico(
             IUsuarioRepositorio repositorio, 
             IUnitOfWork uow, 
             ICriptografiaServico criptografiaServico,
-            SigningConfigurations signingConfigurations) : base(uow)
+            SigningConfigurations signingConfigurations,
+            TokenConfigurations tokenConfigurations) : base(uow)
         {
             this.repositorio = repositorio;
             this.criptografiaServico = criptografiaServico;
             this.signingConfigurations = signingConfigurations;
+            this.tokenConfigurations = tokenConfigurations;
         }
 
         public List<string> Autenticar(string email, string senha, out string accessToken)
@@ -66,14 +69,13 @@ namespace AgendaAPI.Servico
             );
 
             DateTime dataCriacao = DateTime.Now;
-            DateTime dataExpiracao = dataCriacao +
-                TimeSpan.FromSeconds(120);
+            DateTime dataExpiracao = dataCriacao + TimeSpan.FromSeconds(tokenConfigurations.Seconds);
 
             var handler = new JwtSecurityTokenHandler();
             var securityToken = handler.CreateToken(new SecurityTokenDescriptor
             {
-                Issuer = "Issuer",
-                Audience = "Audience",
+                Issuer = tokenConfigurations.Issuer,
+                Audience = tokenConfigurations.Audience,
                 SigningCredentials = signingConfigurations.SigningCredentials,
                 Subject = identity,
                 NotBefore = dataCriacao,

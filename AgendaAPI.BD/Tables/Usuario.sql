@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Usuario]
+(
+	[Id] INT NOT NULL IDENTITY(1,1),
+	[Nome] VARCHAR(100) NOT NULL,
+	[Email] VARCHAR(100) NOT NULL,
+	[Senha] VARCHAR(255) NOT NULL, 
+    CONSTRAINT [PK_Usuario] PRIMARY KEY ([Id])
+)

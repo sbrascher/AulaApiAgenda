@@ -24,7 +24,7 @@ namespace AgendaAPI.Controllers
         }
 
         // GET: api/Usuarios/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
             var contato = servico.Obter(id);

@@ -1,5 +1,6 @@
 ﻿using AgendaAPI.Dominio.Entidades;
 using AgendaAPI.Dominio.Servicos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
@@ -7,6 +8,7 @@ namespace AgendaAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize("Bearer")]
     public class ContatosController : ControllerBase
     {
         public IContatoServico servico { get; }
@@ -26,39 +28,8 @@ namespace AgendaAPI.Controllers
             return Ok(servico.Obter());
         }
 
-        [HttpGet("Exemplo1")]
-        public ActionResult GetParaExemplo1()
-        {
-            var contatos = servico.Obter();
-            var resultado = contatos.Select(x => new
-            {
-                Codigo = x.Id,
-                NomeContato = x.Nome
-            });
-
-            return Ok(resultado);
-        }
-
         // GET: api/Contato/5
-        [HttpGet("Exemplo2/{id}")]
-        public ActionResult GetParaExemplo2(int id)
-        {
-            var contato = servico.Obter(id);
-
-            if (contato == null)
-                return NotFound();
-
-            var resultado = new
-            {
-                Codigo = contato.Id,
-                NomeContato = contato.Nome
-            };
-
-            return Ok(resultado);
-        }
-
-        // GET: api/Contato/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
             var contato = servico.Obter(id);

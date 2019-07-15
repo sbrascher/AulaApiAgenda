@@ -62,5 +62,6 @@
   <ItemGroup>
     <Build Include="Tables\Contato.sql" />
     <Build Include="Tables\Telefone.sql" />
+    <Build Include="Tables\Usuario.sql" />
   </ItemGroup>
 </Project>
